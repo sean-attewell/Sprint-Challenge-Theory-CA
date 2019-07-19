@@ -18,15 +18,17 @@ def get_new_value(old_gen, old_automata):
             if i - SQ_NUM - 1 >= old_gen * SQ_NUM:
                 live_above += 1
         # top right
-        if old_automata[i - SQ_NUM + 1]:
-            if i - SQ_NUM + 1 < old_gen * SQ_NUM + SQ_NUM:
+        if i - SQ_NUM + 1 < old_gen * SQ_NUM + SQ_NUM:
+            if old_automata[i - SQ_NUM + 1]:
                 live_above += 1
 
         # update state
         if live_above == 0 or live_above == 3:
-            old_automata[i] = 0
+            if generations < SQ_NUM:
+                old_automata[i] = 0
         else:
-            old_automata[i] = 1
+            if generations < SQ_NUM:
+                old_automata[i] = 1
 
     # then replace the return statement below to
     # return the updated automata
